@@ -1,0 +1,8 @@
+Image: data/sample.jpg
+
+Question: What is happening in this image?
+
+Follow-up:
+- Describe the objects present
+- What is the environment like?
+- Is there any activity happening?
