@@ -12,6 +12,15 @@ app = FastAPI(
 )
 
 
+@app.get("/")
+def health():
+
+    return {
+        "status": "running",
+        "service": "vision-assistant"
+    }
+
+
 @app.post(
     "/analyze",
     response_model=VisionResponse
