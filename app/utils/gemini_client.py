@@ -17,21 +17,40 @@ class GeminiClient:
     def __init__(self):
 
         if not GEMINI_API_KEY:
-            raise ValueError("Missing API key")
 
-        genai.configure(
-            api_key=GEMINI_API_KEY
-        )
+            logger.warning(
+                "Missing GEMINI_API_KEY"
+            )
 
-        self.model = genai.GenerativeModel(
-            MODEL_NAME
-        )
+            self.model = None
+            return
+
+        try:
+
+            genai.configure(
+                api_key=GEMINI_API_KEY
+            )
+
+            self.model = genai.GenerativeModel(
+                MODEL_NAME
+            )
+
+        except Exception as e:
+
+            logger.error(
+                f"Gemini init failed: {e}"
+            )
+
+            self.model = None
 
     def generate_vision(
         self,
         prompt,
         image
     ):
+
+        if self.model is None:
+            return "error: model not initialized"
 
         for attempt in range(MAX_RETRIES):
 
