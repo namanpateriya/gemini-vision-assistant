@@ -1,0 +1,5 @@
+pip install -r requirements.txt
+
+python -m app.cli --image data/sample.jpg --question "What is in the image?"
+
+uvicorn app.main:app --reload
