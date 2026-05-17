@@ -30,15 +30,13 @@ class VisionOptimizer:
             "recommendations": []
         }
 
-        if not case["passed"]:
+        rec["recommendations"].append(
+            "Improve prompt clarity for vision reasoning"
+        )
 
-            rec["recommendations"].append(
-                "Improve prompt clarity for vision reasoning"
-            )
-
-            rec["recommendations"].append(
-                "Refine expected keywords or evaluation logic"
-            )
+        rec["recommendations"].append(
+            "Refine expected keywords or evaluation logic"
+        )
 
         self.recommendations.append(rec)
 
@@ -58,7 +56,7 @@ class VisionOptimizer:
 
 def optimize():
 
-    results = run()
+    results = run() or []
 
     optimizer = VisionOptimizer()
 
@@ -66,7 +64,7 @@ def optimize():
 
     optimizer.save()
 
-    print("\nOptimization Summary")
+    print("\n=== Optimization Summary ===")
 
     print(f"Failures: {len(failures)}")
 
@@ -80,5 +78,4 @@ def optimize():
 
 
 if __name__ == "__main__":
-
     optimize()
