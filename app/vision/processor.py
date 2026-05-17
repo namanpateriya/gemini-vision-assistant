@@ -1,9 +1,8 @@
+import os
 from PIL import Image
 
 from app.utils.gemini_client import GeminiClient
-from app.vision.prompts import (
-    VISION_ANALYSIS_PROMPT
-)
+from app.vision.prompts import VISION_ANALYSIS_PROMPT
 
 client = GeminiClient()
 
@@ -13,7 +12,10 @@ class VisionProcessor:
     @staticmethod
     def load_image(path):
 
-        return Image.open(path)
+        if not os.path.exists(path):
+            raise ValueError(f"Image not found: {path}")
+
+        return Image.open(path).convert("RGB")
 
     @staticmethod
     def analyze_image(
