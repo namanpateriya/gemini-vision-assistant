@@ -1,0 +1,8 @@
+[
+  {
+    "id": "vision_001",
+    "image": "data/sample.jpg",
+    "question": "What is in the image?",
+    "expected_keywords": ["person", "object"]
+  }
+]
